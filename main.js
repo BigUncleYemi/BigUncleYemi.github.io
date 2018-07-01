@@ -1,9 +1,9 @@
 if ('serviceWorker' in navigator ) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/serviceworkers.js').then(registration => {
-      console.log('ServiceWorker registration successful with scope: ', registration.scope, registration);
+      console.log(`ServiceWorker registration successful with scope: ${registration.scope}`);
         }, err => {
-      console.log('ServiceWorker registration failed: ', err);
+      console.log(`ServiceWorker registration failed: ${err}`);
     });
   });
 }  
@@ -15,35 +15,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     window.alert("Your browser doesn't support a stable version of IndexedDB.")
   }
 
-  const openRequest = indexedDB.open("currencyDB",1);
-
-  openRequest.onupgradeneeded = () => {
-    const thisDB = openRequest.result;
-    const db = thisDB.createObjectStore("historys", {keyPath: "curr.rate"});
-    const index = db.createIndex("NameIndex", ["curr.from", "curr.to"]);
-  }
-
-  openRequest.onsuccess = ()=> {
-    const db = openRequest.result;
-    const tx = db.transaction(["historys"], "readwrite");
-    const store = tx.objectStore("historys");
-    const index = store.index("NameIndex");
-    store.openCursor().onsuccess = (event) => {
-      const cursor = event.target.result;
-      if (cursor) {
-        console.log(`convertion of ${cursor.value.curr.rate},${cursor.value.curr.from} to ${cursor.value.curr.to},${cursor.value.curr.valY}`);
-        cursor.continue();
-      }
-      else {
-        // alert("No more entries!");
-      }
-    };
-  }
-
-  openRequest.onerror = (e)=>{
-    console.log(err)
-  }
-})  
+})
 
 
 const url = 'https://free.currencyconverterapi.com/api/v5/currencies';
@@ -107,7 +79,7 @@ const conv = () => {
         }
 
         openRequest.onerror = (e)=>{
-          console.log(err)
+          return err
         }
       } else {
       const err = new Error(`Value not found for ${query}`);
@@ -155,13 +127,13 @@ const conv = () => {
           }
   
           openRequest.onerror = (e)=>{
-            console.log(err)
+            return err
           }
         }
       }
 
       openRequest.onerror = (e)=>{
-      console.log(err)
+        return err
       }
     }
   });
@@ -208,7 +180,7 @@ const posp = ( ) => {
           }
 
           openRequest.onerror = (e)=>{
-            console.log(err)
+            return err
           }
 
         } else {
@@ -216,8 +188,8 @@ const posp = ( ) => {
           alert(err);
         }
       })
-    .catch(()=>{
-      alert(`Opps You seems to be Offline`)
+    .catch((err)=>{
+      return err
     });
   }
 }

@@ -16,7 +16,7 @@ self.addEventListener('install', event => {
       console.log('Opened cache');
       return cache.addAll(urlsToCache);
       }).catch((err)=>{
-        console.log(err,'dami')
+        return err
       })
     );
 });
@@ -30,12 +30,8 @@ self.addEventListener('fetch',  event => {
         }
         return fetch(event.request)
       }
-    ).catch(error => {
-        const client = clients.get(event.clientId);
-        client.postMessage({
-          msg: "Hey You seems to be Offline! can load other poppular Currency"
-        }
-      )
+    ).catch((err) => {
+      return err
     })
   );
 });
