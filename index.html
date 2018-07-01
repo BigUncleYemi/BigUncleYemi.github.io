@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="./main.css" rel="stylesheet">
+  <title>CurrencyConv</title>
+  <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:100,200,300,400,500,600,700|Fjalla+One" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0="
+  crossorigin="anonymous" />
+  <script src="./main.js"></script>
+  <script src="./serviceworkers.js"></script>
+</head>
+
+<body>
+  <!-- header -->
+<header>
+  <div class="head">
+    currency conventer
+  </div>
+  <nav>
+    <div>
+      <ul class="inl-fl">
+        <li class="list-cur">USD</li>
+        <li class="list-cur">GBP</li>
+        <li class="list-cur">JPY</li>
+        <li class="list-cur">SAR</li>
+        <li class="list-cur">EUR</li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<!-- App area -->
+<section class="app">
+  <div class="main">
+    <div class="app" style=" border-bottom: 1px solid #c9c9c9;">
+      <!-- select area -->
+      <div class="menu-conv">
+        <p>FROM:</p>
+        <select id="from" onchange="set()"></select>
+      </div>
+      <div class="menu-conv">
+        <p>TO:</p>
+        <select id="to" onchange="set()"></select>
+      </div>
+    </div>
+    <div>
+      <!-- display result area -->
+      <div style="padding: 15px">
+        <div style="font-size: 40px; display: inline-flex">
+          <p id="disfrom"></p><input type="text" name="from" id="amount">
+        </div>
+      <div style="font-size: 40px;">
+        <div style="font-size: 40px; display: inline-flex">
+          <p id="disto"></p><input type="text" name="from" id="results" disabled>
+        </div>
+      </div>
+      <button onclick="conv()">Convert</button>
+    </div>
+      <div style="padding: 10px">
+        <div style="font-size: 20px;">
+          <h3>Other Popular Currency </h3>
+        </div>
+        <!-- popular currency -->
+        <ul class="others" id="pop"></>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div style="float: right;">
+    <ul class="inl-fl">
+      <li>
+        <i class="fa fa-facebook" aria-hidden="true"></i>
+      </li>
+      <li>
+        <i class="fa fa-twitter"></i>
+      </li>
+      <li>
+        <i class="fa fa-instagram"></i>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <p>
+      CurrencyConv &copy; BigUncleYemi
+    </p>
+  </div>
+</footer>
+</body>
+</html>
