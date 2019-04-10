@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 })
 
 
-const url = 'https://free.currencyconverterapi.com/api/v5/currencies';
+const url = `${'https://cors-anywhere.herokuapp.com/'}https://free.currencyconverterapi.com/api/v5/currencies`;
   fetch(url)
   .then((response)=>(
     response.json()
@@ -53,7 +53,7 @@ const conv = () => {
   let y = document.getElementById('to').value;
   let query = `${x}_${y}`;
   let amount = document.getElementById('amount').value
-  fetch(`https://free.currencyconverterapi.com/api/v5/convert?q=${x}_${y}&compact=ultra`)
+  fetch(`${'https://cors-anywhere.herokuapp.com/'}https://free.currencyconverterapi.com/api/v5/convert?q=${x}_${y}&compact=ultra`)
     .then((response) => response.json())
     .then((data) => {
       let val = Object.values(data)
@@ -152,7 +152,7 @@ const posp = ( ) => {
   for(const pop in pops){
     let querys = `${x}_${pops[pop]}`
     let amount = document.getElementById('amount').value
-    fetch(`https://free.currencyconverterapi.com/api/v5/convert?q=${x}_${pops[pop]}&compact=ultra`)
+    fetch(`${'https://cors-anywhere.herokuapp.com/'}https://free.currencyconverterapi.com/api/v5/convert?q=${x}_${pops[pop]}&compact=ultra`)
       .then((response) => response.json())
       .then((data) => {
         let val = Object.values(data)
